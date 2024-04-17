@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import Calendar from "./Calendar";
-import "./styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClock,
