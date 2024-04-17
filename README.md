@@ -12,6 +12,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * Add Name and Email.
 * Can select multiple checkbox.
 * Can schedule meeting by Schedule btn.
+* Full Mobile and Web Responsiveness.
 
 ## Topics
 
