@@ -1,0 +1,21 @@
+@media (max-width: 768px) {
+    #next-btn {
+      /* position: static!important; */
+      /* width: 100%!important; */
+      /* margin-top: 16px;
+       */
+    width: 150px;
+    
+    }
+  }
+
+  /* "@media (max-width : 600px)": {
+    width: "150px",
+    position: "absolute",
+    left: `calc(190px + ${selectedIndex * 0}px)`,
+    top: `calc(1555px + ${selectedIndex * 115}px)`,
+    transition: "width 0.2s ease-out",
+    overflow: "hidden",
+    color: "pink",
+    
+  }, */

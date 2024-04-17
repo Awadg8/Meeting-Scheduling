@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import "../styles.css"
-import "../App.css"
 import Calendar from "./Calendar";
+import "./styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClock,
@@ -21,7 +20,7 @@ const MeetingDetail = () => {
   const [numCols, setNumCols] = useState(6);
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(null);
-  const [showWelcome, setShowWelcome] = useState(false);
+  const [showForm, setShowForm] = useState(false);
   const [showTimeDiv, setShowTimeDiv] = useState(false);
   const [showSchedule, setShowSchedule] = useState(false);
 
@@ -59,11 +58,11 @@ const MeetingDetail = () => {
   };
 
   const handleNextClick = () => {
-    setShowWelcome(true);
+    setShowForm(true);
 
     document.getElementById("second-div").style.display = "none";
     document.getElementById("third-div").style.display = "none";
-    document.getElementById("cookie-btn").classList.remove("mt-[500px]")
+    document.getElementById("cookie-btn").classList.remove("mt-[500px]");
     document.getElementById("cookie-btn").style.top = "820px";
 
     setSelectedDateFormatted(
@@ -89,7 +88,7 @@ const MeetingDetail = () => {
     document.getElementById("third-div").style.display = "none";
     setSelectedName(document.getElementById("name").value);
 
-    setShowWelcome(false);
+    setShowForm(false);
     // setSelectedName("John Doe");
     setSelectedDateFormatted(
       new Date(
@@ -109,10 +108,7 @@ const MeetingDetail = () => {
 
   return (
     <div className={`md:grid grid-cols-${numCols} md:grid-flow-col`}>
-      <div
-        className=" md:col-span-3 md:border-r-4 md:mr-10"
-        id="first-div"
-      >
+      <div className=" md:col-span-3 md:border-r-4 md:mr-10" id="first-div">
         <div className=" border-b-4">
           <img
             className=" w-auto h-auto object-cover  mx-auto"
@@ -126,7 +122,11 @@ const MeetingDetail = () => {
             Fibery Demo
           </h1>
           <div className=" flex flex-row text-gray-600 font-semibold my-10">
-            <FontAwesomeIcon icon={faClock} size="2xl" className="md:ml-12 ml-8" />
+            <FontAwesomeIcon
+              icon={faClock}
+              size="2xl"
+              className="md:ml-12 ml-8"
+            />
             <h3 className=" ml-4 text-2xl">45 min</h3>
           </div>
 
@@ -136,7 +136,7 @@ const MeetingDetail = () => {
                 <FontAwesomeIcon
                   icon={faCalendar}
                   size="2xl"
-                  className="ml-12"
+                  className="md:ml-12 ml-8"
                 />
                 <h3 className="ml-4 text-2xl">
                   {selectedTime}, {selectedDateFormatted}
@@ -146,7 +146,7 @@ const MeetingDetail = () => {
                 <FontAwesomeIcon
                   icon={faEarthAmericas}
                   size="2xl"
-                  className="ml-12"
+                  className="md:ml-12 ml-8"
                 />
                 <h2 className="text-2xl text-gray-700 ml-4">
                   UK, Ireland, Lisbon Time (16.54)
@@ -220,21 +220,9 @@ const MeetingDetail = () => {
                 {selectedTime && (
                   <div
                     className=" h-[94px] bg-blue-600 text-white rounded-md text-3xl pt-7"
-                    id="next-div"
-                    style={{
-                      width: "150px",
-                      position: "absolute",
-                      left: `calc(1307px + ${selectedIndex * 0}px)`,
-                      top: `calc(220px + ${selectedIndex * 115}px)`,
-                      transition: "width 0.2s ease-out",
-                      overflow: "hidden",
-                      
-                      
-                    }}
+                    id="next-btn"
                     onClick={handleNextClick}
                   >
-                    
-                    
                     Next
                   </div>
                 )}
@@ -244,8 +232,8 @@ const MeetingDetail = () => {
         )}
       </div>
 
-      {showWelcome && (
-        <div className="col-span-6 mt-10 ml-4">
+      {showForm && (
+        <div className="col-span-6 mt-10 mx-4">
           <div>
             <h1 className="text-4xl font-semibold mb-5">Enter Details</h1>
             <div className="flex flex-col">
@@ -555,10 +543,10 @@ const MeetingDetail = () => {
               <h1 className="text-black font-semibold text-2xl mb-5">
                 Please, share anything that will help prepare for our meeting
               </h1>
-              <textarea
+              <textarea 
                 rows="4"
                 cols="42"
-                className=" border-2 border-gray-400 text-3xl rounded-xl py-2 px-4 mb-2 focus:outline-none focus:shadow-outline"
+                className=" border-2 border-gray-400 text-3xl rounded-xl py-2 px-4 mb-2 focus:outline-none focus:shadow-outline md:w-auto w-80 h-48"
                 placeholder="Enter your message"
               ></textarea>
             </div>
@@ -569,10 +557,10 @@ const MeetingDetail = () => {
               <textarea
                 rows="3"
                 cols="42"
-                className=" border-2 border-gray-400 text-3xl rounded-xl py-2 px-4 mb-2 focus:outline-none focus:shadow-outline"
+                className=" border-2 border-gray-400 text-3xl rounded-xl py-2 px-4 mb-2 focus:outline-none focus:shadow-outline md:w-auto w-80 h-48"
                 placeholder="Enter your message"
               ></textarea>
-              <div className="mt-5 mb-10">
+              <div className="mt-5 mb-10 flex justify-center md:justify-normal">
                 <button
                   className=" bg-blue-600 text-white px-5 py-5 rounded-full text-2xl"
                   onClick={handleScheduleClick}
@@ -586,13 +574,13 @@ const MeetingDetail = () => {
       )}
 
       {showSchedule && (
-        <div className="col-span-6 flex justify-center text-center mt-20">
-          <div className="relative top-[1150px] right-[250px]">
+        <div className="col-span-6 flex justify-center text-center mt-20 flex-col md:flex-row">
+          <div className="relative top-[1650px] right-[80px] md:top-[1150px] md:right-[250px] ">
             <a className="text-blue-500 text-2xl" href="#">
               Cookie settings
             </a>
           </div>
-          <div className=" w-[750px]">
+          <div className=" md:w-[750px]">
             <div className=" flex flex-col text-center justify-center">
               <div className="flex justify-center mb-20">
                 <img
@@ -603,7 +591,7 @@ const MeetingDetail = () => {
               </div>
               <div className="flex justify-center">
                 <img
-                  className="w-10 h-10 mt-1 mr-5"
+                  className=" w-16 h-16 md:w-10 md:h-10 mt-1 ml-4 md:mr-5"
                   src="https://icones.pro/wp-content/uploads/2021/02/icone-de-tique-ronde-verte.png"
                   alt=""
                 />
@@ -619,7 +607,7 @@ const MeetingDetail = () => {
               </div>
             </div>
 
-            <div className=" border-2 border-gray-400 rounded-2xl mt-3">
+            <div className=" border-2 border-gray-400 rounded-2xl mt-3 mx-2">
               <div className="flex flex-row font-semibold my-10">
                 <h1 className="text-black font-semibold text-4xl ml-12">
                   Fibery Demo
@@ -658,17 +646,17 @@ const MeetingDetail = () => {
             </div>
             <div className=" border-b-2 border-gray-400 my-14"></div>
 
-            <div className="flex flex-col">
+            <div className="flex flex-col mx-2">
               <h1 className="text-black font-bold text-2xl text-left mb-5 ">
                 Schedule your own meeting with Calendly for free
               </h1>
               <h1 className=" text-black text-2xl font-light text-left mb-5">
                 Eliminate the back-and-fourth emails for finding time.
               </h1>
-              <div className="flex flex-row justify-center">
-                <div className=" flex flex-row border-2 border-black rounded-full px-8 mr-5">
+              <div className="flex md:flex-row flex-col justify-center">
+                <div className="flex flex-row border-2 border-black rounded-full md:px-8 mr-5 mb-3 md:mb-0">
                   <img
-                    className="w-10 h-10 mt-5 mr-3"
+                    className="w-10 h-10 md:mt-8 md:mr-3 m-5 md:m-0 "
                     src="https://app.prime-response.com/system/uploads/asset/image/file/000/000/000/037/google_logo.png"
                     alt=""
                   />
@@ -676,14 +664,14 @@ const MeetingDetail = () => {
                     Sign up with Google
                   </button>
                 </div>
-                <div className="flex flex-row border-2 border-black rounded-full px-8 py-5">
+                <div className="flex flex-row border-2 border-black rounded-full md:px-8 md:py-5">
                   <img
-                    className="w-10 h-10 mr-3 "
+                    className="w-10 h-10 md:mt-3 md:mr-3 m-5 md:m-0 "
                     src="https://tse2.mm.bing.net/th?id=OIP.sFLk_VjAQf-JSRBSuW93bAHaHa&pid=Api&P=0&h=180"
                     alt=""
                   />
                   <button className="text-2xl font-light">
-                    Sign up with Microsoft
+                    Sign up with Microsofts
                   </button>
                 </div>
               </div>
@@ -696,6 +684,30 @@ const MeetingDetail = () => {
           </div>
         </div>
       )}
+
+      <style jsx="true">{`
+        @media (max-width: 1550px) {
+          #next-btn {
+            width: 150px;
+            position: absolute;
+            left: calc(1307px + ${selectedIndex * 0}px);
+            top: calc(218px + ${selectedIndex * 115}px);
+            transition: width 0.2s ease-out;
+            overflow: hidden;
+          }
+        }
+
+        @media (max-width: 500px) {
+          #next-btn {
+            width: 150px;
+            position: absolute;
+            left: calc(190px + ${selectedIndex * 0}px);
+            top: calc(1555px + ${selectedIndex * 115}px);
+            transition: width 0.2s ease-out;
+            overflow: hidden;
+          }
+        }
+      `}</style>
     </div>
   );
 };

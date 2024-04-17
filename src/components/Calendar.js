@@ -108,7 +108,7 @@ const Calendar = (props) => {
             {week.map((day, index) => (
               <div
                 key={index}
-                className="text-center text-gray-500 md:text-3xl text-xl font-normal py-5 md:py-9 hover:bg-blue-100 hover:rounded-full hover:text-blue-700"
+                className="text-center text-gray-500 md:text-3xl text-xl font-normal md:py-9 hover:bg-blue-100 hover:rounded-full hover:text-blue-700"
                 id="date-picker"
                 onClick={() => handleDateClick(day)}
                 style={{
@@ -120,11 +120,12 @@ const Calendar = (props) => {
                     dateSelected[dateSelected.length - 1] === day
                       ? ""
                       : "gray-500",
-                  ...(day === day && {
+                  // ...(day === day && {
                     paddingTop: "20px",
                     paddingBottom: "20px",
                     borderRadius: "100px",
-                  }),
+                  // }),
+                  
                 }}
               >
                 {day !== null ? day : ""}
@@ -135,7 +136,9 @@ const Calendar = (props) => {
       </div>
 
       <div className="mb-8">
-        <h1 className=" font-bold mt-6 text-3xl mb-4 md:ml-5 ml-8 ">Time Zone</h1>
+        <h1 className=" font-bold mt-6 text-3xl mb-4 md:ml-5 ml-8 ">
+          Time Zone
+        </h1>
         <div className=" flex">
           <FontAwesomeIcon
             icon={faEarthAmericas}
@@ -147,6 +150,18 @@ const Calendar = (props) => {
           </h2>
         </div>
       </div>
+
+      <style jsx="true">{`
+        @media (max-width: 1550px) {
+          #date-picker {
+            paddingTop: "20px",
+            paddingBottom: "20px",
+            borderRadius: "100px",
+          }
+        }
+
+      `}</style>
+
     </div>
   );
 };
